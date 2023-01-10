@@ -5,6 +5,7 @@
 use std::error::Error;
 use std::ffi::{ OsString };
 use std::fmt;
+use std::path::Path;
 use std::sync::Arc;
 use std::sync::atomic::{ AtomicBool };
 use std::fs::File;
@@ -78,7 +79,8 @@ const GPIO_SWITCH_A3: u8 = 18;
 const GPIO_SWITCH_B3: u8 = 19;
 const GPIO_SWITCH_C3: u8 = 20;
 
-const IMAGE_DIR: str = "/home/pi/Pictures/wyldcard";
+const IMAGE_DIR: &str = "/home/pi/Pictures/wyldcard/";
+const CARD_COLLECTION: &str = "collectionB";
 
 fn main() -> Result<(), Box<dyn Error>> {
   let terminate_now = Arc::new(AtomicBool::new(false));
@@ -383,6 +385,8 @@ fn load_image(image_path: &str) -> Result<Vec<u8>, ImageLoadError> {
 }
 
 fn random_image() -> OsString {
-  let paths = fs::read_dir(&IMAGE_DIR).unwrap();
+  let root = Path::new("/");
+  let directory_path = root.join(IMAGE_DIR).join(CARD_COLLECTION);
+  let paths = fs::read_dir(directory_path.to_str().unwrap()).unwrap();
   paths.choose(&mut rand::thread_rng()).unwrap().unwrap().path().into_os_string()
 }

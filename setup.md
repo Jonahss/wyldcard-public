@@ -60,6 +60,15 @@ install rustup and follow instructions to install rust:
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 ```
 
+clone the public repo
+```
+git clone https://github.com/Jonahss/wyldcard-public.git
+```
+
+navigate into the project and run
+```
+cargo run
+```
 
 ### Enable peripheral access
 
