@@ -8,7 +8,7 @@ env:
   CWD: napi-rust-drivers
 defaults:
   run:
-    working-directory: ${{ env.CWD }}
+    working-directory: napi-rust-drivers
 'on':
   push:
     branches:
