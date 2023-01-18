@@ -3,7 +3,7 @@
 name: CI
 env:
   DEBUG: napi:*
-  APP_NAME: napi-rust-drivers
+  APP_NAME: wyldcard_drivers
   MACOSX_DEPLOYMENT_TARGET: '10.13'
 defaults:
   run:
