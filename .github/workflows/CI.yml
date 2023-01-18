@@ -5,9 +5,10 @@ env:
   DEBUG: napi:*
   APP_NAME: wyldcard_drivers
   MACOSX_DEPLOYMENT_TARGET: '10.13'
+  CWD: napi-rust-drivers
 defaults:
   run:
-    working-directory: napi-rust-drivers
+    working-directory: ${{ env.CWD }}
 'on':
   push:
     branches:
@@ -46,7 +47,7 @@ jobs:
           node-version: 18
           check-latest: true
           cache: yarn
-          cache-dependency-path: napi-rust-drivers/yarn.lock
+          cache-dependency-path: ${{ env.CWD }}/yarn.lock
       - name: Install
         uses: dtolnay/rust-toolchain@stable
         if: ${{ !matrix.settings.docker }}
@@ -85,7 +86,7 @@ jobs:
           check-latest: true
           cache: yarn
           architecture: x86
-          cache-dependency-path: napi-rust-drivers/yarn.lock
+          cache-dependency-path: ${{ env.CWD }}/yarn.lock
       - name: Build in docker
         uses: addnab/docker-run-action@v3
         if: ${{ matrix.settings.docker }}
@@ -101,7 +102,7 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: bindings-${{ matrix.settings.target }}
-          path: ${{ env.APP_NAME }}.*.node
+          path: ${{ env.CWD }}/${{ env.APP_NAME }}.*.node
           if-no-files-found: error
   test-linux-arm-gnueabihf-binding:
     name: Test bindings on armv7-unknown-linux-gnueabihf - node@${{ matrix.node }}
@@ -152,7 +153,7 @@ jobs:
           node-version: 18
           check-latest: true
           cache: yarn
-          cache-dependency-path: napi-rust-drivers/yarn.lock
+          cache-dependency-path: ${{ env.CWD }}/yarn.lock
       - name: Install dependencies
         run: yarn install
       - name: Download all artifacts
