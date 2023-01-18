@@ -1,8 +1,13 @@
+# github actions generate by napi-rs for publishing the drivers in napi-rust-drivers
+# if adding more actions, make sure to move the working directory accordingly 
 name: CI
 env:
   DEBUG: napi:*
   APP_NAME: napi-rust-drivers
   MACOSX_DEPLOYMENT_TARGET: '10.13'
+defaults:
+  run:
+    working-directory: napi-rust-drivers
 'on':
   push:
     branches:
