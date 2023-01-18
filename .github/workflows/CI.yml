@@ -46,6 +46,7 @@ jobs:
           node-version: 18
           check-latest: true
           cache: yarn
+        working-directory: napi-rust-drivers
       - name: Install
         uses: dtolnay/rust-toolchain@stable
         if: ${{ !matrix.settings.docker }}
