@@ -1,0 +1,20 @@
+{
+  "name": "@wyldcard/drivers-linux-arm-gnueabihf",
+  "version": "0.0.0",
+  "os": [
+    "linux"
+  ],
+  "cpu": [
+    "arm"
+  ],
+  "main": "napi-rust-drivers.linux-arm-gnueabihf.node",
+  "files": [
+    "napi-rust-drivers.linux-arm-gnueabihf.node"
+  ],
+  "description": "Hardware drivers for Wyldcard",
+  "license": "MIT",
+  "engines": {
+    "node": ">= 10"
+  },
+  "repository": "https://github.com/Jonahss/wyldcard-public.git"
+}
