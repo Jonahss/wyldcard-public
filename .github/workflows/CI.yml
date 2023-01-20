@@ -6,9 +6,6 @@ env:
   APP_NAME: wyldcard_drivers
   MACOSX_DEPLOYMENT_TARGET: '10.13'
   CWD: napi-rust-drivers
-defaults:
-  run:
-    working-directory: napi-rust-drivers
 'on':
   push:
     branches:
@@ -24,6 +21,9 @@ defaults:
   pull_request: null
 jobs:
   build:
+    defaults:
+      run:
+        working-directory: napi-rust-drivers
     strategy:
       fail-fast: false
       matrix:
