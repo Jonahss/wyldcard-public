@@ -135,7 +135,7 @@ jobs:
         uses: addnab/docker-run-action@v3
         with:
           image: ghcr.io/napi-rs/napi-rs/nodejs:armhf-${{ matrix.node }}
-          options: '-v ${{ github.workspace }}:${{ env.NAPI_DRIVER_SUBDIRECTORY }}/build -w /build'
+          options: '-v ${{ github.workspace }}/${{ env.NAPI_DRIVER_SUBDIRECTORY }}:/build -w /build'
           run: |
             set -e
             yarn test
