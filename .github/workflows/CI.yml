@@ -6,6 +6,9 @@ env:
   APP_NAME: wyldcard_drivers
   MACOSX_DEPLOYMENT_TARGET: '10.13'
   NAPI_DRIVER_SUBDIRECTORY: napi-rust-drivers
+defaults:
+  run:
+    working-directory: napi-rust-drivers
 'on':
   push:
     branches:
@@ -21,9 +24,6 @@ env:
   pull_request: null
 jobs:
   build:
-    defaults:
-      run:
-        working-directory: napi-rust-drivers
     strategy:
       fail-fast: false
       matrix:
@@ -118,6 +118,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - run: docker run --rm --privileged multiarch/qemu-user-static:register --reset
+        working-directory: /
       - uses: actions/checkout@v3
       - name: Download artifacts
         uses: actions/download-artifact@v3
