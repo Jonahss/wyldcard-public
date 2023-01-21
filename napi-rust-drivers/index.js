@@ -29,7 +29,7 @@ switch (platform) {
         localFileExisted = existsSync(join(__dirname, 'drivers.android-arm64.node'))
         try {
           if (localFileExisted) {
-            nativeBinding = require('./drivers.android-arm64.node')
+            nativeBinding = require('./wyldcard_drivers.android-arm64.node')
           } else {
             nativeBinding = require('@wyldcard/drivers-android-arm64')
           }
@@ -41,7 +41,7 @@ switch (platform) {
         localFileExisted = existsSync(join(__dirname, 'drivers.android-arm-eabi.node'))
         try {
           if (localFileExisted) {
-            nativeBinding = require('./drivers.android-arm-eabi.node')
+            nativeBinding = require('./wyldcard_drivers.android-arm-eabi.node')
           } else {
             nativeBinding = require('@wyldcard/drivers-android-arm-eabi')
           }
@@ -61,7 +61,7 @@ switch (platform) {
         )
         try {
           if (localFileExisted) {
-            nativeBinding = require('./drivers.win32-x64-msvc.node')
+            nativeBinding = require('./wyldcard_drivers.win32-x64-msvc.node')
           } else {
             nativeBinding = require('@wyldcard/drivers-win32-x64-msvc')
           }
@@ -75,7 +75,7 @@ switch (platform) {
         )
         try {
           if (localFileExisted) {
-            nativeBinding = require('./drivers.win32-ia32-msvc.node')
+            nativeBinding = require('./wyldcard_drivers.win32-ia32-msvc.node')
           } else {
             nativeBinding = require('@wyldcard/drivers-win32-ia32-msvc')
           }
@@ -89,7 +89,7 @@ switch (platform) {
         )
         try {
           if (localFileExisted) {
-            nativeBinding = require('./drivers.win32-arm64-msvc.node')
+            nativeBinding = require('./wyldcard_drivers.win32-arm64-msvc.node')
           } else {
             nativeBinding = require('@wyldcard/drivers-win32-arm64-msvc')
           }
@@ -105,7 +105,7 @@ switch (platform) {
     localFileExisted = existsSync(join(__dirname, 'drivers.darwin-universal.node'))
     try {
       if (localFileExisted) {
-        nativeBinding = require('./drivers.darwin-universal.node')
+        nativeBinding = require('./wyldcard_drivers.darwin-universal.node')
       } else {
         nativeBinding = require('@wyldcard/drivers-darwin-universal')
       }
@@ -116,7 +116,7 @@ switch (platform) {
         localFileExisted = existsSync(join(__dirname, 'drivers.darwin-x64.node'))
         try {
           if (localFileExisted) {
-            nativeBinding = require('./drivers.darwin-x64.node')
+            nativeBinding = require('./wyldcard_drivers.darwin-x64.node')
           } else {
             nativeBinding = require('@wyldcard/drivers-darwin-x64')
           }
@@ -130,7 +130,7 @@ switch (platform) {
         )
         try {
           if (localFileExisted) {
-            nativeBinding = require('./drivers.darwin-arm64.node')
+            nativeBinding = require('./wyldcard_drivers.darwin-arm64.node')
           } else {
             nativeBinding = require('@wyldcard/drivers-darwin-arm64')
           }
@@ -149,7 +149,7 @@ switch (platform) {
     localFileExisted = existsSync(join(__dirname, 'drivers.freebsd-x64.node'))
     try {
       if (localFileExisted) {
-        nativeBinding = require('./drivers.freebsd-x64.node')
+        nativeBinding = require('./wyldcard_drivers.freebsd-x64.node')
       } else {
         nativeBinding = require('@wyldcard/drivers-freebsd-x64')
       }
@@ -166,7 +166,7 @@ switch (platform) {
           )
           try {
             if (localFileExisted) {
-              nativeBinding = require('./drivers.linux-x64-musl.node')
+              nativeBinding = require('./wyldcard_drivers.linux-x64-musl.node')
             } else {
               nativeBinding = require('@wyldcard/drivers-linux-x64-musl')
             }
@@ -179,7 +179,7 @@ switch (platform) {
           )
           try {
             if (localFileExisted) {
-              nativeBinding = require('./drivers.linux-x64-gnu.node')
+              nativeBinding = require('./wyldcard_drivers.linux-x64-gnu.node')
             } else {
               nativeBinding = require('@wyldcard/drivers-linux-x64-gnu')
             }
@@ -195,7 +195,7 @@ switch (platform) {
           )
           try {
             if (localFileExisted) {
-              nativeBinding = require('./drivers.linux-arm64-musl.node')
+              nativeBinding = require('./wyldcard_drivers.linux-arm64-musl.node')
             } else {
               nativeBinding = require('@wyldcard/drivers-linux-arm64-musl')
             }
@@ -208,7 +208,7 @@ switch (platform) {
           )
           try {
             if (localFileExisted) {
-              nativeBinding = require('./drivers.linux-arm64-gnu.node')
+              nativeBinding = require('./wyldcard_drivers.linux-arm64-gnu.node')
             } else {
               nativeBinding = require('@wyldcard/drivers-linux-arm64-gnu')
             }
@@ -223,7 +223,7 @@ switch (platform) {
         )
         try {
           if (localFileExisted) {
-            nativeBinding = require('./drivers.linux-arm-gnueabihf.node')
+            nativeBinding = require('./wyldcard_drivers.linux-arm-gnueabihf.node')
           } else {
             nativeBinding = require('@wyldcard/drivers-linux-arm-gnueabihf')
           }
