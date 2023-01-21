@@ -26,7 +26,7 @@ switch (platform) {
   case 'android':
     switch (arch) {
       case 'arm64':
-        localFileExisted = existsSync(join(__dirname, 'drivers.android-arm64.node'))
+        localFileExisted = existsSync(join(__dirname, 'wyldcard_drivers.android-arm64.node'))
         try {
           if (localFileExisted) {
             nativeBinding = require('./wyldcard_drivers.android-arm64.node')
@@ -38,7 +38,7 @@ switch (platform) {
         }
         break
       case 'arm':
-        localFileExisted = existsSync(join(__dirname, 'drivers.android-arm-eabi.node'))
+        localFileExisted = existsSync(join(__dirname, 'wyldcard_drivers.android-arm-eabi.node'))
         try {
           if (localFileExisted) {
             nativeBinding = require('./wyldcard_drivers.android-arm-eabi.node')
@@ -57,7 +57,7 @@ switch (platform) {
     switch (arch) {
       case 'x64':
         localFileExisted = existsSync(
-          join(__dirname, 'drivers.win32-x64-msvc.node')
+          join(__dirname, 'wyldcard_drivers.win32-x64-msvc.node')
         )
         try {
           if (localFileExisted) {
@@ -71,7 +71,7 @@ switch (platform) {
         break
       case 'ia32':
         localFileExisted = existsSync(
-          join(__dirname, 'drivers.win32-ia32-msvc.node')
+          join(__dirname, 'wyldcard_drivers.win32-ia32-msvc.node')
         )
         try {
           if (localFileExisted) {
@@ -85,7 +85,7 @@ switch (platform) {
         break
       case 'arm64':
         localFileExisted = existsSync(
-          join(__dirname, 'drivers.win32-arm64-msvc.node')
+          join(__dirname, 'wyldcard_drivers.win32-arm64-msvc.node')
         )
         try {
           if (localFileExisted) {
@@ -102,7 +102,7 @@ switch (platform) {
     }
     break
   case 'darwin':
-    localFileExisted = existsSync(join(__dirname, 'drivers.darwin-universal.node'))
+    localFileExisted = existsSync(join(__dirname, 'wyldcard_drivers.darwin-universal.node'))
     try {
       if (localFileExisted) {
         nativeBinding = require('./wyldcard_drivers.darwin-universal.node')
@@ -113,7 +113,7 @@ switch (platform) {
     } catch {}
     switch (arch) {
       case 'x64':
-        localFileExisted = existsSync(join(__dirname, 'drivers.darwin-x64.node'))
+        localFileExisted = existsSync(join(__dirname, 'wyldcard_drivers.darwin-x64.node'))
         try {
           if (localFileExisted) {
             nativeBinding = require('./wyldcard_drivers.darwin-x64.node')
@@ -126,7 +126,7 @@ switch (platform) {
         break
       case 'arm64':
         localFileExisted = existsSync(
-          join(__dirname, 'drivers.darwin-arm64.node')
+          join(__dirname, 'wyldcard_drivers.darwin-arm64.node')
         )
         try {
           if (localFileExisted) {
@@ -146,7 +146,7 @@ switch (platform) {
     if (arch !== 'x64') {
       throw new Error(`Unsupported architecture on FreeBSD: ${arch}`)
     }
-    localFileExisted = existsSync(join(__dirname, 'drivers.freebsd-x64.node'))
+    localFileExisted = existsSync(join(__dirname, 'wyldcard_drivers.freebsd-x64.node'))
     try {
       if (localFileExisted) {
         nativeBinding = require('./wyldcard_drivers.freebsd-x64.node')
@@ -162,7 +162,7 @@ switch (platform) {
       case 'x64':
         if (isMusl()) {
           localFileExisted = existsSync(
-            join(__dirname, 'drivers.linux-x64-musl.node')
+            join(__dirname, 'wyldcard_drivers.linux-x64-musl.node')
           )
           try {
             if (localFileExisted) {
@@ -175,7 +175,7 @@ switch (platform) {
           }
         } else {
           localFileExisted = existsSync(
-            join(__dirname, 'drivers.linux-x64-gnu.node')
+            join(__dirname, 'wyldcard_drivers.linux-x64-gnu.node')
           )
           try {
             if (localFileExisted) {
@@ -191,7 +191,7 @@ switch (platform) {
       case 'arm64':
         if (isMusl()) {
           localFileExisted = existsSync(
-            join(__dirname, 'drivers.linux-arm64-musl.node')
+            join(__dirname, 'wyldcard_drivers.linux-arm64-musl.node')
           )
           try {
             if (localFileExisted) {
@@ -204,7 +204,7 @@ switch (platform) {
           }
         } else {
           localFileExisted = existsSync(
-            join(__dirname, 'drivers.linux-arm64-gnu.node')
+            join(__dirname, 'wyldcard_drivers.linux-arm64-gnu.node')
           )
           try {
             if (localFileExisted) {
@@ -219,7 +219,7 @@ switch (platform) {
         break
       case 'arm':
         localFileExisted = existsSync(
-          join(__dirname, 'drivers.linux-arm-gnueabihf.node')
+          join(__dirname, 'wyldcard_drivers.linux-arm-gnueabihf.node')
         )
         try {
           if (localFileExisted) {
