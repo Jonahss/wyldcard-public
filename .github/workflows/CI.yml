@@ -124,7 +124,7 @@ jobs:
         uses: actions/download-artifact@v3
         with:
           name: bindings-armv7-unknown-linux-gnueabihf
-          path: .
+          path: ./${{ env.NAPI_DRIVER_SUBDIRECTORY }}
       - name: List packages
         run: ls -R .
         shell: bash
