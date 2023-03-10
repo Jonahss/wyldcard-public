@@ -158,7 +158,7 @@ jobs:
       - name: Download all artifacts
         uses: actions/download-artifact@v3
         with:
-          path: artifacts
+          path: ${{ env.NAPI_DRIVER_SUBDIRECTORY }}/artifacts
       - name: Move artifacts
         run: yarn artifacts
       - name: List packages
