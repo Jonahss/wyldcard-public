@@ -1,15 +1,15 @@
 {
   "name": "@wyldcard/drivers-linux-arm-gnueabihf",
-  "version": "0.0.7",
+  "version": "0.0.10",
   "os": [
     "linux"
   ],
   "cpu": [
     "arm"
   ],
-  "main": "napi-rust-drivers.linux-arm-gnueabihf.node",
+  "main": "wyldcard_drivers.linux-arm-gnueabihf.node",
   "files": [
-    "napi-rust-drivers.linux-arm-gnueabihf.node"
+    "wyldcard_drivers.linux-arm-gnueabihf.node"
   ],
   "description": "Hardware drivers for Wyldcard",
   "license": "MIT",
