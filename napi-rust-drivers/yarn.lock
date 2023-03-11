@@ -75,23 +75,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@wyldcard/drivers-linux-arm-gnueabihf@npm:0.0.5":
-  version: 0.0.5
-  resolution: "@wyldcard/drivers-linux-arm-gnueabihf@npm:0.0.5"
-  conditions: os=linux & cpu=arm
-  languageName: node
-  linkType: hard
-
 "@wyldcard/drivers@workspace:.":
   version: 0.0.0-use.local
   resolution: "@wyldcard/drivers@workspace:."
   dependencies:
     "@napi-rs/cli": ^2.14.3
-    "@wyldcard/drivers-linux-arm-gnueabihf": 0.0.5
     ava: ^4.3.3
-  dependenciesMeta:
-    "@wyldcard/drivers-linux-arm-gnueabihf":
-      optional: true
   languageName: unknown
   linkType: soft
 
