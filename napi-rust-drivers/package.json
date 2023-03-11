@@ -12,10 +12,13 @@
       ]
     }
   },
-  "license": "MIT",
+  "license": "AGPL-3.0-or-later",
   "devDependencies": {
     "@napi-rs/cli": "^2.14.3",
     "ava": "^4.3.3"
+  },
+  "optionalDependencies": {
+    "@wyldcard/drivers-linux-arm-gnueabihf": "0.0.5"
   },
   "ava": {
     "timeout": "3m"
