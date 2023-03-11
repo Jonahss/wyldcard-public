@@ -1,6 +1,6 @@
 {
   "name": "@wyldcard/drivers",
-  "version": "0.0.5",
+  "version": "0.0.7",
   "main": "index.js",
   "types": "index.d.ts",
   "napi": {
@@ -18,7 +18,7 @@
     "ava": "^4.3.3"
   },
   "optionalDependencies": {
-    "@wyldcard/drivers-linux-arm-gnueabihf": "0.0.5"
+    "@wyldcard/drivers-linux-arm-gnueabihf": "0.0.7"
   },
   "ava": {
     "timeout": "3m"
