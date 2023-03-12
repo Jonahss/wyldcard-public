@@ -2,14 +2,14 @@
 # yarn lockfile v1
 
 
-"@wyldcard/drivers-linux-arm-gnueabihf@0.0.5":
-  version "0.0.5"
-  resolved "https://registry.yarnpkg.com/@wyldcard/drivers-linux-arm-gnueabihf/-/drivers-linux-arm-gnueabihf-0.0.5.tgz#bd0f095eeefd2fcadd08b8eedb4f36848b52b73b"
-  integrity sha512-rFns1i/H3dwqgYI7rlEAASaMK1MwxmuhZHbhdT0cwX5g4Rj5DfFVXqFStP1H4qIlT3ynX5K1fjuQavLWGGVovg==
+"@wyldcard/drivers-linux-arm-gnueabihf@0.0.10":
+  version "0.0.10"
+  resolved "https://registry.yarnpkg.com/@wyldcard/drivers-linux-arm-gnueabihf/-/drivers-linux-arm-gnueabihf-0.0.10.tgz#69f8cc59398bfe4a90e016a8e7c9f6dd6022084d"
+  integrity sha512-xA/YoH94vAsoSvjuqve0VHdgPo0SX0fCY2+gRYpEJ7DTb7MzTImp53cRBtbsAxT6z4rfFPppiDPqIxj+d2GGEA==
 
-"@wyldcard/drivers@^0.0.5":
-  version "0.0.5"
-  resolved "https://registry.yarnpkg.com/@wyldcard/drivers/-/drivers-0.0.5.tgz#e484ed3d01e22d8f606421c47247c618f9f7a53e"
-  integrity sha512-s/Pwg3f7z2CJc5osmX86IBVh1batoqneu77hhzPuQOZimJ1gDChJeYAIHVGwk60+I2d9KyFGb0zX5QHv8RBObw==
+"@wyldcard/drivers@^0.0.10":
+  version "0.0.10"
+  resolved "https://registry.yarnpkg.com/@wyldcard/drivers/-/drivers-0.0.10.tgz#4c07e58c83c172dfe24a346b23338462139c6dcf"
+  integrity sha512-yjabvXa87CPIe0zKRQhmXDiCb5gd/4mUkSb4BGDaJR9ICsweKIItiQi1wv/FddPtzlEAXGyHUGCG7/U0Uiexfg==
   optionalDependencies:
-    "@wyldcard/drivers-linux-arm-gnueabihf" "0.0.5"
+    "@wyldcard/drivers-linux-arm-gnueabihf" "0.0.10"

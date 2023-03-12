@@ -3,6 +3,8 @@ edition = "2021"
 name = "wyldcard_drivers"
 version = "0.0.0"
 
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
 [lib]
 crate-type = ["cdylib"]
 
@@ -10,6 +12,13 @@ crate-type = ["cdylib"]
 # Default enable napi4 feature, see https://nodejs.org/api/n-api.html#node-api-version-matrix
 napi = { version = "2.10.6", default-features = false, features = ["napi4"] }
 napi-derive = "2.9.4"
+embedded-hal = { version = "0.2.7", features = ["unproven"] }
+rppal = { version = "0.12.0", features = ["hal","hal-unproven"] }
+m95320 = "1.0.2"
+shared-bus = "0.2.4"
+signal-hook = "0.3.9"
+rand = "0.8.0"
+png = "0.17.0"
 
 [build-dependencies]
 napi-build = "2.0.1"
