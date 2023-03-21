@@ -246,6 +246,7 @@ if (!nativeBinding) {
   throw new Error(`Failed to load native binding`)
 }
 
-const { sum } = nativeBinding
+const { JsPlinth, sum } = nativeBinding
 
+module.exports.JsPlinth = JsPlinth
 module.exports.sum = sum
