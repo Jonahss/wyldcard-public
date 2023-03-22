@@ -1,8 +1,17 @@
-let { JsPlinth } = require('./nativeBinding')
+let { JsPrototype } = require('./nativeBinding')
 
 class Plinth {
-  constructor() {
-    this.plinth = new JsPlinth()
+  constructor(model = 'devkit') {
+    if (model == 'prototype') {
+      this.plinth = new JsPrototype()
+    }
+    else if (model == 'devkit') {
+      this.plinth = new Devkit()
+    }
+    else {
+      throw new Error('must supply argument to Plinth constructor, either "prototype" or "devkit"')
+    }
+    
     this.wells = [
       new Well(0, this.plinth),
       new Well(1, this.plinth),

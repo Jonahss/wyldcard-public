@@ -8,18 +8,18 @@ mod epaper_display;
 
 use napi::bindgen_prelude::Buffer;
 
-use crate::plinth::Plinth;
+use crate::plinth::{ Plinth, DevKitV1, Prototype };
 
 #[napi]
-struct JsPlinth {
-  plinth: Plinth,
+struct JsPrototype {
+  plinth: Prototype,
 }
 
 #[napi]
-impl JsPlinth {
+impl JsPrototype {
   #[napi(constructor)]
   pub fn new() -> Self {
-    JsPlinth { plinth: Plinth::new() }
+    JsPrototype { plinth: Prototype::new() }
   }
 
   #[napi]

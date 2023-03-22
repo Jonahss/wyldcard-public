@@ -246,9 +246,9 @@ if (!nativeBinding) {
   throw new Error(`Failed to load native binding`)
 }
 
-const { JsPlinth, sum } = nativeBinding
+const { JsPrototype, sum } = nativeBinding
 
 module.exports = {
-  JsPlinth,
+  JsPrototype,
   sum,
 }
