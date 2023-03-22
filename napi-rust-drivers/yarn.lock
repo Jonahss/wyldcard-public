@@ -81,6 +81,8 @@ __metadata:
   dependencies:
     "@napi-rs/cli": ^2.14.3
     ava: ^4.3.3
+    lodash: ^4.17.21
+    pngparse: ^2.0.1
   languageName: unknown
   linkType: soft
 
@@ -1175,7 +1177,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"lodash@npm:^4.17.15":
+"lodash@npm:^4.17.15, lodash@npm:^4.17.21":
   version: 4.17.21
   resolution: "lodash@npm:4.17.21"
   checksum: eb835a2e51d381e561e508ce932ea50a8e5a68f4ebdd771ea240d3048244a8d13658acbd502cd4829768c56f2e16bdd4340b9ea141297d472517b83868e677f7
@@ -1586,6 +1588,13 @@ __metadata:
   dependencies:
     irregular-plurals: ^3.3.0
   checksum: 57e400dc4b926768fb0abab7f8688fe17e85673712134546e7beaaee188bae7e0504976e847d7e41d0d6103ff2fd61204095f03c2a45de19a8bad15aecb45cc1
+  languageName: node
+  linkType: hard
+
+"pngparse@npm:^2.0.1":
+  version: 2.0.1
+  resolution: "pngparse@npm:2.0.1"
+  checksum: 0a687ea114bdab1e1aecab398bdb11b9959383731d7d8915ccfe95f00fd7456b282bec5809db2185b852503999491194761ff659c9c498226a7cfecfa6ce03c0
   languageName: node
   linkType: hard
 
