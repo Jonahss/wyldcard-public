@@ -7,4 +7,5 @@ export function sum(a: number, b: number): number
 export class JsPrototype {
   constructor()
   displayImage(well: number, image: Buffer): void
+  setSwitchCallback(well: number, switch: string, callback: (...args: any[]) => any): void
 }

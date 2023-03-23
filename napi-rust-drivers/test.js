@@ -5,9 +5,21 @@ let { Plinth, imageUtilities } = require('./')
 
 async function main() {
   let plinth = new Plinth('prototype')
-  let image = await imageUtilities.randomImage()
-  //let image = await imageUtilities.loadPng('/home/pi/Workspace/wyldcard-public/images/converted/Peacock.png')
-  plinth.wells[0].displayImage(image)
+
+
+  let displayRandomImage = function(well) {
+    return async () => {
+      console.log('js callback reporting for duty, SIR')
+      let image = await imageUtilities.randomImage()
+      plinth.wells[well].displayImage(image)
+    }
+  }
+
+  plinth.wells.forEach((well, i) => {
+    well.onAButtonPress(displayRandomImage(i))
+    well.onBButtonPress(displayRandomImage(i))
+    well.onCButtonPress(displayRandomImage(i))
+  })
 }
 
 main()

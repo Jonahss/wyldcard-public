@@ -30,6 +30,16 @@ class Well {
   displayImage = async function(imageBuffer) {
     this.plinth.displayImage(this.id, imageBuffer)
   }
+
+  onAButtonPress = function(cb) {
+    this.plinth.setSwitchCallback(this.id, 'a', cb)
+  }
+  onBButtonPress = function(cb) {
+    this.plinth.setSwitchCallback(this.id, 'b', cb)
+  }
+  onCButtonPress = function(cb) {
+    this.plinth.setSwitchCallback(this.id, 'c', cb)
+  }
 }
 
 module.exports = {
