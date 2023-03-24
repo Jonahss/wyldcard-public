@@ -43,12 +43,10 @@ impl JsPrototype {
     };
 
     let tsfn: ThreadsafeFunction<u32, ErrorStrategy::CalleeHandled> = callback.create_threadsafe_function(0, |ctx| {
-      println!("we called a callback in here?");
       Ok(vec![ctx.value + 1])
     })?;
 
     let switch_callback = move |level| {
-      println!("inner switch callback called");
       tsfn.call(Ok(1), ThreadsafeFunctionCallMode::NonBlocking);
     };
 
@@ -57,10 +55,4 @@ impl JsPrototype {
       Err(e) => Err(Error::new(Status::GenericFailure, e))
     }
   }
-}
-
-
-#[napi]
-pub fn sum(a: i32, b: i32) -> i32 {
-  a + b
 }

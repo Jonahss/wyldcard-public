@@ -3,15 +3,9 @@
 #[allow(unused_variables)]
 #[allow(unused_imports)]
 use std::error::Error;
-use std::ffi::{ OsString };
-use std::fmt;
-use std::path::Path;
-use std::fs::File;
 
-use std::fs;
 use std::collections::HashMap;
-use std::time::{ Duration, Instant };
-use png;
+use std::time::{ Duration };
 
 
 use rppal::gpio::{ Gpio, Trigger, OutputPin, InputPin, Level };
@@ -23,11 +17,6 @@ use m95320::prelude::*;
 use m95320::m95320::Flash;
 
 use port_expander::{ Pca9555, Pcf8574 };
-use port_expander::mode::QuasiBidirectional;
-
-
-use rand::prelude::IteratorRandom;
-use shared_bus::NullMutex;
 
 use crate::epaper_display::GDEW029T5DController;
 

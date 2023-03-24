@@ -9,7 +9,6 @@ async function main() {
 
   let displayRandomImage = function(well) {
     return async () => {
-      console.log('js callback reporting for duty, SIR')
       let image = await imageUtilities.randomImage()
       plinth.wells[well].displayImage(image)
     }
