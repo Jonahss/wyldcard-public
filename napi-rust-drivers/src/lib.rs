@@ -15,6 +15,7 @@ mod epaper_display;
 
 use crate::plinth::{ Plinth, DevKitV1, Prototype };
 
+
 #[napi]
 struct JsPrototype {
   plinth: Prototype,
@@ -54,5 +55,19 @@ impl JsPrototype {
       Ok(_) => Ok(()),
       Err(e) => Err(Error::new(Status::GenericFailure, e))
     }
+  }
+
+  #[napi]
+  pub fn read_memory(&self, well: u8, bytes: u32) -> Result<Vec<u8>> {
+    let mut buffer = vec![0; bytes as usize];
+    self.plinth.read_memory(well.into(), &mut buffer).map_err(|e| Error::from_reason(e))?;
+    Ok(buffer)
+  }
+
+  #[napi]
+  pub fn write_memory(&self, well: u8, data: Buffer) -> Result<()> {
+    let mut data_to_write = Vec::from(data);
+    self.plinth.write_memory(well.into(), &mut data_to_write).map_err(|e| Error::from_reason(e))?;
+    Ok(())
   }
 }

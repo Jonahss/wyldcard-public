@@ -7,4 +7,6 @@ export class JsPrototype {
   constructor()
   displayImage(well: number, image: Buffer): void
   setSwitchCallback(well: number, switch: string, callback: (...args: any[]) => any): void
+  readMemory(well: number, bytes: number): Array<number>
+  writeMemory(well: number, data: Buffer): void
 }

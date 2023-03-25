@@ -14,10 +14,17 @@ async function main() {
     }
   }
 
+  let getData = function(well) {
+    return async () => {
+      let data = well.getData()
+      console.log('data for card in well', well.id, data)
+    }
+  }
+
   plinth.wells.forEach((well, i) => {
-    well.onAButtonPress(displayRandomImage(i))
-    well.onBButtonPress(displayRandomImage(i))
-    well.onCButtonPress(displayRandomImage(i))
+    well.onAButtonPress(getData(well))
+    well.onBButtonPress(getData(well))
+    well.onCButtonPress(getData(well))
   })
 }
 
