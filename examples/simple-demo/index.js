@@ -1,10 +1,10 @@
 let fs = require('fs/promises')
 let path = require('path')
 
-let { Plinth, imageUtilities } = require('.')
+let { Plinth, imageUtilities } = require('@wyldcard/drivers')
 
 async function main() {
-  let plinth = new Plinth('prototype')
+  let plinth = new Plinth('devkit')
 
 
   let displayRandomImage = function(well) {
