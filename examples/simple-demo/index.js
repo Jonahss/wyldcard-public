@@ -1,3 +1,31 @@
-let { sum } = require('@wyldcard/drivers')
+let fs = require('fs/promises')
+let path = require('path')
 
-console.log(sum(400, 20))
+let { Plinth, imageUtilities } = require('.')
+
+async function main() {
+  let plinth = new Plinth('prototype')
+
+
+  let displayRandomImage = function(well) {
+    return async () => {
+      let image = await imageUtilities.randomImage()
+      plinth.wells[well].displayImage(image)
+    }
+  }
+
+  let getData = function(well) {
+    return async () => {
+      let data = well.getData()
+      console.log('data for card in well', well.id, data)
+    }
+  }
+
+  plinth.wells.forEach((well, i) => {
+    well.onAButtonPress(displayRandomImage(well))
+    well.onBButtonPress(displayRandomImage(well))
+    well.onCButtonPress(displayRandomImage(well))
+  })
+}
+
+main()
