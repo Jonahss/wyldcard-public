@@ -326,7 +326,7 @@ impl DevKitV1 {
     self.read_memory(well,&mut buf)?;
     buf[0] = buf[0].wrapping_add(1);
     println!("count is now {}", buf[0]);
-    self.write_memory(0, &mut buf)?;
+    self.write_memory(well, &mut buf)?;
     Ok(())
   }
 }
@@ -590,7 +590,7 @@ impl Prototype {
     self.read_memory(well,&mut buf)?;
     buf[0] = buf[0].wrapping_add(1);
     println!("count is now {}", buf[0]);
-    self.write_memory(0, &mut buf)?;
+    self.write_memory(well, &mut buf)?;
     Ok(())
   }
 }
