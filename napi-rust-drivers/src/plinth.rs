@@ -320,15 +320,6 @@ impl DevKitV1 {
       ]),
     }
   }
-
-  pub fn increment_counter(&mut self, well: usize) -> Result<(), String> {
-    let mut buf: [u8;32] = [0x0; 32];
-    self.read_memory(well,&mut buf)?;
-    buf[0] = buf[0].wrapping_add(1);
-    println!("count is now {}", buf[0]);
-    self.write_memory(0, &mut buf)?;
-    Ok(())
-  }
 }
 
 pub struct Prototype {
@@ -583,14 +574,5 @@ impl Prototype {
         ((3, 'c'), switch_c3),
       ]),
     }
-  }
-
-  pub fn increment_counter(&mut self, well: usize) -> Result<(), String> {
-    let mut buf: [u8;32] = [0x0; 32];
-    self.read_memory(well,&mut buf)?;
-    buf[0] = buf[0].wrapping_add(1);
-    println!("count is now {}", buf[0]);
-    self.write_memory(0, &mut buf)?;
-    Ok(())
   }
 }

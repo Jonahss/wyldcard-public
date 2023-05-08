@@ -246,6 +246,7 @@ if (!nativeBinding) {
   throw new Error(`Failed to load native binding`)
 }
 
-const { JsPrototype } = nativeBinding
+const { JsPrototype, JsDevkit } = nativeBinding
 
 module.exports.JsPrototype = JsPrototype
+module.exports.JsDevkit = JsDevkit
