@@ -38,11 +38,11 @@ class Well {
   // it's easier to use the `storeData()` method, which serializes a javascript object for you
   // this method takes a raw Buffer of bytes 
   _writeMemory = function(buffer) {
-    this.plinth.writeMemory(buffer)
+    this.plinth.writeMemory(this.id, buffer)
   }
 
   storeData = function(object) {
-    this._writeMemory(this.id, Buffer.from(JSON.stringify(object)))
+    this._writeMemory(Buffer.from(JSON.stringify(object)))
   }
 
   _readMemory = function() {
@@ -50,7 +50,8 @@ class Well {
   }
 
   getData = function() {
-    return JSON.parse(this._readMemory().toString())
+    let text = this._readMemory().toString().trim()
+    return JSON.parse(text)
   }
 
   // register a callback to be called when Switch A (the top button) for this well is pressed

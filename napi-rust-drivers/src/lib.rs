@@ -58,10 +58,10 @@ impl JsPrototype {
   }
 
   #[napi]
-  pub fn read_memory(&self, well: u8, bytes: u32) -> Result<Vec<u8>> {
+  pub fn read_memory(&self, well: u8, bytes: u32) -> Result<Buffer> {
     let mut buffer = vec![0; bytes as usize];
     self.plinth.read_memory(well.into(), &mut buffer).map_err(|e| Error::from_reason(e))?;
-    Ok(buffer)
+    Ok(Buffer::from(buffer))
   }
 
   #[napi]
