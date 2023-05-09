@@ -1,0 +1,27 @@
+{
+  "name": "@wyldcard/tarot",
+  "version": "1.0.0",
+  "description": "Simple Tarot card deck, draw and display",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jonahss/wyldcard-public.git"
+  },
+  "keywords": [
+    "wyldcard"
+  ],
+  "author": "jonahss",
+  "license": "AGPL-3.0-or-later",
+  "bugs": {
+    "url": "https://github.com/jonahss/wyldcard-public/issues"
+  },
+  "homepage": "https://github.com/jonahss/wyldcard-public#readme",
+  "dependencies": {
+    "@wyldcard/drivers": "^0.0.10",
+    "lodash": "^4.17.21",
+    "gm": "^1.25.0"
+  }
+}
