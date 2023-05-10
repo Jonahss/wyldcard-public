@@ -2,14 +2,27 @@
 # yarn lockfile v1
 
 
-"@wyldcard/drivers-linux-arm-gnueabihf@0.0.10":
-  version "0.0.10"
-  resolved "https://registry.yarnpkg.com/@wyldcard/drivers-linux-arm-gnueabihf/-/drivers-linux-arm-gnueabihf-0.0.10.tgz#69f8cc59398bfe4a90e016a8e7c9f6dd6022084d"
-  integrity sha512-xA/YoH94vAsoSvjuqve0VHdgPo0SX0fCY2+gRYpEJ7DTb7MzTImp53cRBtbsAxT6z4rfFPppiDPqIxj+d2GGEA==
+"@wyldcard/drivers-linux-arm-gnueabihf@0.0.11":
+  version "0.0.11"
+  resolved "https://registry.yarnpkg.com/@wyldcard/drivers-linux-arm-gnueabihf/-/drivers-linux-arm-gnueabihf-0.0.11.tgz#d7b3668563445686365f8d7320b39648a700c60a"
+  integrity sha512-K67CvVzR3mZBEAYNyes/62yBYsmWu6GI0uPz21MHkE1EUcFG/gTxms6fe2KwbwhKaVqmsvJRobRALd75LNJjZg==
 
-"@wyldcard/drivers@^0.0.10":
-  version "0.0.10"
-  resolved "https://registry.yarnpkg.com/@wyldcard/drivers/-/drivers-0.0.10.tgz#4c07e58c83c172dfe24a346b23338462139c6dcf"
-  integrity sha512-yjabvXa87CPIe0zKRQhmXDiCb5gd/4mUkSb4BGDaJR9ICsweKIItiQi1wv/FddPtzlEAXGyHUGCG7/U0Uiexfg==
+"@wyldcard/drivers@0.0.11":
+  version "0.0.11"
+  resolved "https://registry.yarnpkg.com/@wyldcard/drivers/-/drivers-0.0.11.tgz#27f596a8c219fe2baaf0038107b0e206d3b53809"
+  integrity sha512-YnAcktMoDYwR+i4EdSokcA5PMkcQiUUucyOrs/YFr0xjkIq8q0gSucgw7Z6uqO0ISGXUIRAtCKYDy5DVB9gS8A==
+  dependencies:
+    lodash "^4.17.21"
+    pngparse "^2.0.1"
   optionalDependencies:
-    "@wyldcard/drivers-linux-arm-gnueabihf" "0.0.10"
+    "@wyldcard/drivers-linux-arm-gnueabihf" "0.0.11"
+
+lodash@^4.17.21:
+  version "4.17.21"
+  resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.21.tgz#679591c564c3bffaae8454cf0b3df370c3d6911c"
+  integrity sha512-v2kDEe57lecTulaDIuNTPy3Ry4gLGJ6Z1O3vE1krgXZNrsQ+LFTGHVxVjcXPs17LhbZVGedAJv8XZ1tvj5FvSg==
+
+pngparse@^2.0.1:
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/pngparse/-/pngparse-2.0.1.tgz#86852de4de349f4efb1e852e7525655e5ac5dfb8"
+  integrity sha512-RyB1P0BBwt3CNIZ5wT53lR1dT3CUtopnMOuP8xZdHjPhI/uXNNRnkx1yQb/3MMMyyMeo6p19fiIRHcLopWIkxA==

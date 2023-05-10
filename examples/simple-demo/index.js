@@ -10,7 +10,7 @@ async function main() {
   let displayRandomImage = function(well) {
     return async () => {
       let image = await imageUtilities.randomImage()
-      plinth.wells[well].displayImage(image)
+      well.displayImage(image)
     }
   }
 
@@ -21,7 +21,7 @@ async function main() {
     }
   }
 
-  plinth.wells.forEach((well, i) => {
+  plinth.wells.forEach((well) => {
     well.onAButtonPress(displayRandomImage(well))
     well.onBButtonPress(displayRandomImage(well))
     well.onCButtonPress(displayRandomImage(well))

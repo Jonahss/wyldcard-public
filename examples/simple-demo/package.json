@@ -20,6 +20,6 @@
   },
   "homepage": "https://github.com/jonahss/wyldcard-public#readme",
   "dependencies": {
-    "@wyldcard/drivers": "^0.0.10"
+    "@wyldcard/drivers": "0.0.11"
   }
 }
