@@ -26,6 +26,10 @@ class Well {
     this.id = id
     this.plinth = plinth
     this.maxMemory = 4096 // bytes. basically 4kb
+    this.dimensions = {
+      x: 128,
+      y: 296,
+    }
   }
 
   // display an image on the e-paper display of the wyldcard present in this well
@@ -64,17 +68,26 @@ class Well {
 
   // register a callback to be called when Switch A (the top button) for this well is pressed
   onAButtonPress = function(cb) {
+    validateCallback(cb)
     this.plinth.setSwitchCallback(this.id, 'a', cb)
   }
 
   // register a callback to be called when Switch B (the middle button) for this well is pressed
   onBButtonPress = function(cb) {
+    validateCallback(cb)
     this.plinth.setSwitchCallback(this.id, 'b', cb)
   }
   
   // register a callback to be called when Switch C (the bottom button) for this well is pressed
   onCButtonPress = function(cb) {
+    validateCallback(cb)
     this.plinth.setSwitchCallback(this.id, 'c', cb)
+  }
+}
+
+function validateCallback(cb) {
+  if (!util.types.isAsyncFunction(cb)) {
+    throw new error('callbacks passed to `onXButtonPress()` handlers must be async functions')
   }
 }
 
