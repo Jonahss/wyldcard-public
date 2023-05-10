@@ -49,7 +49,7 @@ async function main() {
   let getData = function(well) {
     return () => {
       let data = well.getData()
-      console.log('data for card in well', well.id, data)
+      return data
     }
   }
 
@@ -58,7 +58,6 @@ async function main() {
     let buf = Buffer.alloc(4096, ' '.charCodeAt(0))
     buf[0] = '{'.charCodeAt(0)
     buf[1] = '}'.charCodeAt(0)
-    console.log(buf.toString())
     well._writeMemory(buf)
     console.log('erased well', well.id)
   }
@@ -70,11 +69,11 @@ async function main() {
   // })
 
   erase(plinth.wells[0])
-  console.log('erased. now getting data')
-  getData(plinth.wells[0])()
-
+  console.log(plinth.wells[0].getData())
   plinth.wells[0].storeData({ hello: 'chukwudi'})
-  getData(plinth.wells[0])()
+  console.log(plinth.wells[0].getData())
+  plinth.wells[0].storeData({ hello: 'chukwudi', ohyeah: 'coolaid'})
+  console.log(plinth.wells[0].getData())
 }
 
 main()

@@ -42,7 +42,15 @@ class Well {
   }
 
   storeData = function(object) {
-    this._writeMemory(Buffer.from(JSON.stringify(object)))
+    let text = JSON.stringify(object)
+    if (text.length > this.maxMemory) {
+      throw new Error(`attempted to store too much data. JSON stringified data is of length ${text.length}, which is more than the maximum of ${this.maxMemory}. You could try using the _writeMemory and _readMemory functions directly, storing data in binary rather than ascii JSON.`)
+    }
+
+    let buf = Buffer.alloc(4096, ' ')
+    buf.write(text)
+
+    this._writeMemory(buf)
   }
 
   _readMemory = function() {
