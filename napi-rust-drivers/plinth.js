@@ -1,7 +1,14 @@
+let EventEmitter = require('events')
+let util = require('util')
+
+let _ = require('lodash')
+
 let { JsPrototype, JsDevkit } = require('./nativeBinding')
 
-class Plinth {
+class Plinth extends EventEmitter {
   constructor(model = 'devkit') {
+    super()
+
     if (model == 'prototype') {
       this.plinth = new JsPrototype()
     }
@@ -21,8 +28,10 @@ class Plinth {
   }
 }
 
-class Well {
+class Well extends EventEmitter {
   constructor(id, plinth) {
+    super()
+
     this.id = id
     this.plinth = plinth
     this.maxMemory = 4096 // bytes. basically 4kb
@@ -30,6 +39,11 @@ class Well {
       x: 128,
       y: 296,
     }
+
+    this.buttonPressBuffer = new Map() // for detecting chorded button presses
+    this.chordTimeout = 35 // amount of time in milliseconds between button presses which will count as being pressed at the same time to form a chord
+    this.endOfChordTimer = setTimeout(()=>{}, 1)
+    this.on('buttonPress', this._emitChordedButtonPress)
   }
 
   // display an image on the e-paper display of the wyldcard present in this well
@@ -69,25 +83,52 @@ class Well {
   // register a callback to be called when Switch A (the top button) for this well is pressed
   onAButtonPress = function(cb) {
     validateCallback(cb)
+    cb = this._wrapCallbackToEmitEvents(cb, 'a')
     this.plinth.setSwitchCallback(this.id, 'a', cb)
   }
 
   // register a callback to be called when Switch B (the middle button) for this well is pressed
   onBButtonPress = function(cb) {
     validateCallback(cb)
+    cb = this._wrapCallbackToEmitEvents(cb, 'b')
     this.plinth.setSwitchCallback(this.id, 'b', cb)
   }
   
   // register a callback to be called when Switch C (the bottom button) for this well is pressed
   onCButtonPress = function(cb) {
     validateCallback(cb)
+    cb = this._wrapCallbackToEmitEvents(cb, 'c')
     this.plinth.setSwitchCallback(this.id, 'c', cb)
+  }
+
+  _wrapCallbackToEmitEvents = function(cb, buttonId) {
+    let well = this
+
+    return async () => {
+      well.emit('buttonPress', {well: well.id, button: buttonId, ts: Date.now()})
+      cb()
+    }
+  }
+
+  _emitChordedButtonPress = function(buttonPressEvent) {
+    let well = this
+    clearTimeout(well.endOfChordTimer)
+    let chordTimeout = well.chordTimeout
+    well.buttonPressBuffer.set(buttonPressEvent.button, buttonPressEvent.ts)
+
+    let recentPresses = _.filter(Array.from(this.buttonPressBuffer.entries()), ([button, ts]) => ts > buttonPressEvent.ts - chordTimeout)
+    recentPresses = recentPresses.map(([button, ts]) => button)
+
+    well.endOfChordTimer = setTimeout(() => {
+      well.emit('chordedButtonPress', { well: well.id, buttons: recentPresses })
+      well.buttonPressBuffer = new Map()
+    }, chordTimeout)
   }
 }
 
 function validateCallback(cb) {
   if (!util.types.isAsyncFunction(cb)) {
-    throw new error('callbacks passed to `onXButtonPress()` handlers must be async functions')
+    throw new Error('callbacks passed to `onXButtonPress()` handlers must be async functions')
   }
 }
 

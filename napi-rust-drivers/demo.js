@@ -62,18 +62,31 @@ async function main() {
     console.log('erased well', well.id)
   }
 
-  // plinth.wells.forEach((well, i) => {
-  //   well.onAButtonPress(getData(well))
-  //   well.onBButtonPress(getData(well))
-  //   well.onCButtonPress(getData(well))
-  // })
+  let logCallbackPress = function(well, buttonId) {
+    return async () => {
+      console.log('logging button press by callback: well', well.id, buttonId)
+    }
+  }
 
-  erase(plinth.wells[0])
-  console.log(plinth.wells[0].getData())
-  plinth.wells[0].storeData({ hello: 'chukwudi'})
-  console.log(plinth.wells[0].getData())
-  plinth.wells[0].storeData({ hello: 'chukwudi', ohyeah: 'coolaid'})
-  console.log(plinth.wells[0].getData())
+  let logEventPress = function(well) {
+    return (e) => {
+      console.log('logging button press by event: well', e.well, e.button)
+    }
+  }
+
+  let logEventChordedPress = function(well) {
+    return (e) => {
+      console.log('logging chorded button press by event: well', e.well, e.buttons)
+    }
+  }
+
+  plinth.wells.forEach((well, i) => {
+    well.onAButtonPress(logCallbackPress(well, 'a'))
+    well.onBButtonPress(logCallbackPress(well, 'b'))
+    well.onCButtonPress(logCallbackPress(well, 'c'))
+    well.on('buttonPress', logEventPress(well))
+    well.on('chordedButtonPress', logEventChordedPress(well))
+  })
 }
 
 main()
