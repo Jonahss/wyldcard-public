@@ -9,6 +9,7 @@ function buttonPress(well, buttonsPressed) {
   return async () => {
     memoryTemplate = {
       buttonPresses: [[],[],[],[],[]],
+      count: 0,
     }
 
     let memory;
@@ -17,29 +18,27 @@ function buttonPress(well, buttonsPressed) {
       memory = well.getData()
     } catch (e) {
       console.log('memory read error:', e)
-      well.storeData(memoryTemplate)
       memory = memoryTemplate
     }
 
     if (!memory.buttonPresses) {
       console.log('did not detect button presses data, erasing memory and starting fresh')
-      well.storeData(memoryTemplate)
       memory = memoryTemplate
     }
 
     memory.buttonPresses.pop()
     memory.buttonPresses.unshift(buttonsPressed)
+    memory.count++
 
     console.log('memory for card in well', well.id, memory)
     well.storeData(memory)
 
-    let image = render(memory.buttonPresses)
-    //console.log(image)
+    let image = render(memory.buttonPresses, memory.count)
     well.displayImage(image)
   }
 }
 
-function render(buttonPresses) {
+function render(buttonPresses, count) {
   let canvas = createCanvas(128, 296)
   let ctx = canvas.getContext('2d', { pixelFormat: 'A8' })
 
@@ -62,6 +61,10 @@ function render(buttonPresses) {
       ctx.fillRect(x+margin, y+height+height+margin, width-2*margin, height-2*margin)
     }
   })
+
+  ctx.font = '80px sans-serif'
+  ctx.fillText(count, 40, 100)
+
 
   let pixels = canvas.toBuffer('raw')
   // Buffer of length 37888, one byte representing each pixel.
@@ -95,7 +98,7 @@ function formatPixelBuffer(raw) {
 }
 
 async function main() {
-  let plinth = new Plinth('devkit')
+  let plinth = new Plinth('prototype')
 
   plinth.wells.forEach((well) => {
     well.onAButtonPress(buttonPress(well, ['A']))
