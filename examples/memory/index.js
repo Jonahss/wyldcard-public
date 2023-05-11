@@ -5,8 +5,8 @@ let { createCanvas } = require('canvas');
 let { Plinth } = require('@wyldcard/drivers')
 
 // return the button press callback, associated with a well and button
-function buttonPress(well, buttonsPressed) {
-  return async () => {
+function buttonPress(well) {
+  return async (chordedButtonPressEvent) => {
     memoryTemplate = {
       buttonPresses: [[],[],[],[],[]],
       count: 0,
@@ -27,7 +27,7 @@ function buttonPress(well, buttonsPressed) {
     }
 
     memory.buttonPresses.pop()
-    memory.buttonPresses.unshift(buttonsPressed)
+    memory.buttonPresses.unshift(chordedButtonPressEvent.buttons)
     memory.count++
 
     console.log('memory for card in well', well.id, memory)
@@ -51,13 +51,13 @@ function render(buttonPresses, count) {
     let height = 39
     let width = 25
     let x = i*width+1
-    if (press.includes('A')) {
+    if (press.includes('a')) {
       ctx.fillRect(x+margin, y+margin, width-2*margin, height-2*margin)
     }
-    if (press.includes('B')) {
+    if (press.includes('b')) {
       ctx.fillRect(x+margin, y+height+margin, width-2*margin, height-2*margin)
     }
-    if (press.includes('C')) {
+    if (press.includes('c')) {
       ctx.fillRect(x+margin, y+height+height+margin, width-2*margin, height-2*margin)
     }
   })
@@ -110,14 +110,12 @@ function eraseAll(plinth) {
 }
 
 async function main() {
-  let plinth = new Plinth('prototype')
+  let plinth = new Plinth('devkit')
 
   eraseAll(plinth)
 
   plinth.wells.forEach((well) => {
-    well.onAButtonPress(buttonPress(well, ['A']))
-    well.onBButtonPress(buttonPress(well, ['B']))
-    well.onCButtonPress(buttonPress(well, ['C']))
+    well.on('chordedButtonPress', buttonPress(well))
   })
 }
 
