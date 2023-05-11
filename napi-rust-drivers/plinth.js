@@ -40,6 +40,10 @@ class Well extends EventEmitter {
       y: 296,
     }
 
+    this.onAButtonPress(async()=>{})
+    this.onBButtonPress(async()=>{})
+    this.onCButtonPress(async()=>{})
+
     this.buttonPressBuffer = new Map() // for detecting chorded button presses
     this.chordTimeout = 35 // amount of time in milliseconds between button presses which will count as being pressed at the same time to form a chord
     this.endOfChordTimer = setTimeout(()=>{}, 1)
