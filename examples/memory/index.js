@@ -97,8 +97,22 @@ function formatPixelBuffer(raw) {
   return buffer
 }
 
+function eraseAll(plinth) {
+  let canvas = createCanvas(128, 296)
+  let ctx = canvas.getContext('2d', { pixelFormat: 'A8' })
+  let pixels = canvas.toBuffer('raw')
+  let pixelsFormattedForWyldcard = formatPixelBuffer(pixels)
+
+  plinth.wells.forEach((well) => {
+    well.storeData({})
+    well.displayImage(pixelsFormattedForWyldcard)
+  })
+}
+
 async function main() {
   let plinth = new Plinth('prototype')
+
+  eraseAll(plinth)
 
   plinth.wells.forEach((well) => {
     well.onAButtonPress(buttonPress(well, ['A']))
