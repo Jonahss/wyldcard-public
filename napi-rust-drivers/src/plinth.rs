@@ -332,7 +332,6 @@ pub struct Prototype {
 
 impl Plinth for Prototype {
   fn display_image(&self, well: usize, image: Vec<u8>) {
-    println!("image vec size is {}", image.len());
     let pin_assignments = self.wyldcard_wells[well];
 
     let gpio = Gpio::new().unwrap();
