@@ -81,6 +81,7 @@ class Well extends EventEmitter {
 
   getData = function() {
     let text = this._readMemory().toString().trim()
+    console.log('text', text)
     return JSON.parse(text)
   }
 
