@@ -45,7 +45,8 @@ main()
 In order to get to running this code, we need to go over the following:
 
 - Setting Up a Development Environment
-- Using the Wyldcard JavaScript SDK
+- [Using the Wyldcard JavaScript SDK](docs/using-the-wyldcard-javascript-sdk.md)
+- Formatting Images
 - Driver Documentation
 
 If you want to design your own Wyldcard-compatible hardware, check out:
@@ -56,3 +57,4 @@ This repo also contains
 
 - [Examples and Demo code](examples)
 - [napi-rust-drivers](napi-rust-drivers) - The core Rust code which runs the Wyldcard e-paper displays and the javascript native api wrappers which form the SDK
+- [images](images) - Information about images, how to format them, programs for formatting and sending them to the Wyldcard plinth and some sample images to use
