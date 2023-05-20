@@ -1,11 +1,13 @@
-[wordmark]
+![wyldcard word mark black](https://github.com/Jonahss/wyldcard-public/assets/1521841/7c24295a-98e3-4140-93a7-7143f20b4b6d)
+
+
 
 This is the public code repository for all things Wyldcard
 ----------------------------------------------------------
 For an overview on what Wyldcard is, check out [the introductory blog post](https://www.wyldcard.io/blog/introducing-wyldcard).
 After spending seven hours in the top position on Hacker News, I decided to crowdfund a [Wyldcard DevKit on Crowd Supply](https://www.crowdsupply.com/wyldcard/wyldcard-devkit)
 
-[gif]
+![wyldcardInAction](https://github.com/Jonahss/wyldcard-public/assets/1521841/a84bec78-5598-4045-8d3f-8a65389ec3c9)
 
 
 Game Development on Wyldcard
@@ -48,4 +50,4 @@ In order to get to running this code, we need to go over the following:
 
 If you want to design your own Wyldcard-compatible hardware, check out:
 
-- Hardware Documentation
+- [Hardware Documentation](hardware)
