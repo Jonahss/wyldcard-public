@@ -51,3 +51,8 @@ In order to get to running this code, we need to go over the following:
 If you want to design your own Wyldcard-compatible hardware, check out:
 
 - [Hardware Documentation](hardware)
+
+This repo also contains
+
+- [Examples and Demo code](examples)
+- [napi-rust-drivers](napi-rust-drivers) - The core Rust code which runs the Wyldcard e-paper displays and the javascript native api wrappers which form the SDK
