@@ -19,7 +19,7 @@ The devkit plinth consists for four _wells_ which are the spots you can place ca
 
 Each well has three buttons. This is also an arbitrary decision made for the devkit and could vary depending on the setup designed for a particular game. The buttons are labeled top to bottom `a`, `b` and `c`.
 
-[layout diagram]
+<img width="920" alt="Wyldcard Well Layout" src="https://github.com/Jonahss/wyldcard-public/assets/1521841/d08097f3-ba3b-41b1-a863-bbbb0c1b4324">
 
 Buttons can be referred to by their well and letter.
 
