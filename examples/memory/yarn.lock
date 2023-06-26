@@ -17,20 +17,20 @@
     semver "^7.3.5"
     tar "^6.1.11"
 
-"@wyldcard/drivers-linux-arm-gnueabihf@0.0.13":
-  version "0.0.13"
-  resolved "https://registry.yarnpkg.com/@wyldcard/drivers-linux-arm-gnueabihf/-/drivers-linux-arm-gnueabihf-0.0.13.tgz#6f8f7a569a50e8dcd7fbaa4f92df63f418a30b2d"
-  integrity sha512-Pjto2U9llhksYp0yMAZIp+tiGn1Lz948fmjS0rATMIkWn96gB3/Rngq+ntdsjvt8Nz5TMtbVLjIFYJz6UYXCLA==
+"@wyldcard/drivers-linux-arm-gnueabihf@0.0.14":
+  version "0.0.14"
+  resolved "https://registry.yarnpkg.com/@wyldcard/drivers-linux-arm-gnueabihf/-/drivers-linux-arm-gnueabihf-0.0.14.tgz#ffb317ac884e7db533a5a3472424de703910afb3"
+  integrity sha512-Scgo9oiCqdu5JiDfurHDHH+Bju0lgHUxcpc4xXwYYSXClCDDsfS6bNNoG75p0V7xn3Gwk6dbXqf2r/HYpXeWZA==
 
-"@wyldcard/drivers@0.0.13":
-  version "0.0.13"
-  resolved "https://registry.yarnpkg.com/@wyldcard/drivers/-/drivers-0.0.13.tgz#25be4f17917bf8bad96210900d3aa7791b246ddd"
-  integrity sha512-SdWcR8lYvGeESHfHnJ/tyHS1DipQHwLigBsL1hrr2uBqoUAU0Dx+4fJ9oxjiYC2HIWZ9YiuUiWWvpy3qOKAsnw==
+"@wyldcard/drivers@0.0.14":
+  version "0.0.14"
+  resolved "https://registry.yarnpkg.com/@wyldcard/drivers/-/drivers-0.0.14.tgz#2fc6ba22b5e174f39ad36c5c7b464f32a9b48f0f"
+  integrity sha512-1Yjw+aC7TGRaC0xKIArwD8u4HAoehr7S6nRuX18cOjDrXM0qckbNFqOJEnYyAngEoD4MMjC6w1QKhC5WxRDcNg==
   dependencies:
     lodash "^4.17.21"
     pngparse "^2.0.1"
   optionalDependencies:
-    "@wyldcard/drivers-linux-arm-gnueabihf" "0.0.13"
+    "@wyldcard/drivers-linux-arm-gnueabihf" "0.0.14"
 
 abbrev@1:
   version "1.1.1"
