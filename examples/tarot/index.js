@@ -1,28 +1,25 @@
-// THIS CODE DOESN'T ACTUALLY WORK YET
-// it's close, just need to publish the latest version of the drivers. waiting on merging code which enables memory read/write
-
-
 let fs = require('fs/promises')
 let path = require('path')
 
 let _ = require('lodash')
-let gm = require('gm').subClass({ imageMagick: '7+' })
+let gm = require('gm').subClass({ imageMagick: true })
 
 let { Plinth, imageUtilities } = require('@wyldcard/drivers')
 
 async function main() {
   let plinth = new Plinth('devkit')
-  
-  let alreadyDrawn = [] // list of card image paths already drawn, to avoid duplicates
-  
+
+  let alreadyDrawn = ['back.png'] // list of card image paths already drawn, to avoid duplicates
+
   let drawCard = async () => {
-    let directory = path.resolve('~', 'Pictures', 'Rider-Waite Tarot', 'faces')
+    let directory = path.resolve('/', 'home', 'pi', 'Pictures', 'wyldcard', 'tarot-reliberate')
     let imageNames = await fs.readdir(directory)
     let randomImageName = _.sample(imageNames)
-    
-    while (!alreadyDrawn.includes(randomImageName)) {
+    console.log('random image name', randomImageName, !alreadyDrawn.includes(randomImageName))
+    while (alreadyDrawn.includes(randomImageName)) {
       randomImageName = _.sample(imageNames)
     }
+    console.log('landed on image', randomImageName)
     alreadyDrawn.push(randomImageName)
     
     let randomImagePath = path.join(directory, randomImageName)
@@ -30,25 +27,31 @@ async function main() {
   }
 
   let turnFacedown = async (well) => {
-    // TODO use card memory for this
-    well.faceup = false
+    well.storeData({ tarotCard: 'facedown' })
 
-    let cardBackPath = path.resolve('~', 'Pictures', 'Rider-Waite Tarot', 'back.png')
-    let cardBack = imageUtilities.loadPng(cardBackPath)
+    let cardBackPath = path.resolve('/', 'home', 'pi', 'Pictures', 'wyldcard', 'tarot-reliberate', 'back.png')
+    let cardBack = await imageUtilities.loadPng(cardBackPath)
     
     well.displayImage(cardBack)
   }
 
   let turnFaceup = async (well) => {
-    // TODO use card memory for this
-    well.faceup = true
+    well.storeData({ tarotCard: 'faceup' })
+
     let imagePath = await drawCard()
 
-    let image = imageUtilities.loadPng(randomImagePath)
-
+    let image = await imageUtilities.loadPng(imagePath)
+    console.log('turning faceup, image:', imagePath)
     // reverse!
     if (_.random(1)) {
-      image = gm(image).flip().toBuffer()
+      let reverse = new Promise((resolve, reject) => {
+        gm(imagePath).flip().write('/tmp/reversed.png', function (err) {
+          if (err) return reject(err)
+          return resolve()
+        })
+      })
+      await reverse
+      image = await imageUtilities.loadPng('/tmp/reversed.png')
     }
 
     well.displayImage(image)
@@ -56,27 +59,58 @@ async function main() {
 
   // for all cards on plinth, show card back
   let dealFacedown = async () => {
-    await turnFacedown(plinth.well[0])
-    await turnFacedown(plinth.well[1])
-    await turnFacedown(plinth.well[2])
-    await turnFacedown(plinth.well[3])
+    await turnFacedown(plinth.wells[0])
+    await turnFacedown(plinth.wells[1])
+    await turnFacedown(plinth.wells[2])
+    await turnFacedown(plinth.wells[3])
   }
 
-  // button-press callback
-  let flipCard = async (well) => {
-    if (well.faceup) {
+  // returns a button-press callback
+  let flipCard = (well) => {
+    let memory;
+  
+    try {
+      memory = well.getData()
+    } catch (e) {
+      console.log(`memory isn't formatted, turning card facedown`)
       return turnFacedown(well)
-    } else {
-      return turnFaceup(well)
     }
+
+    if (!memory.tarotCard) {
+      console.log(`card wasn't set up as a tarot card, turning facedown`)
+      return turnFacedown(well)
+    }
+
+    if (memory.tarotCard == 'faceup') {
+      console.log('card was faceup, turning facedown')
+      return turnFacedown(well)
+    } else if (memory.tarotCard == 'facedown') {
+      console.log('card was facedown, turning faceup')
+      return turnFaceup(well)
+    } else {
+      console.log(`card wasn't facedown or faceup?? turn facedown`)
+      return turnFacedown(well)
+    }
+  }
+
+  let reset = async () => {
+    alreadyDrawn = ['back.png']
+    dealFacedown()
   }
 
   await dealFacedown()
 
+  let handleButtonPress = async function(event) {
+    let well = plinth.wells[event.well]
+    if (event.buttons.length > 1) {
+      reset()
+    } else {
+      flipCard(well)
+    }
+  }
+
   plinth.wells.forEach((well) => {
-    well.onAButtonPress(flipCard(well))
-    well.onBButtonPress(flipCard(well))
-    well.onCButtonPress(flipCard(well))
+    well.on('chordedButtonPress', handleButtonPress)
   })
 }
 
