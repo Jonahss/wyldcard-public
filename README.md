@@ -42,10 +42,6 @@ async function main() {
 main()
 ```
 
-For a blog-post style tutorial, see:
-
-- [Implementing a Tarot Deck on Wyldcard](https://www.wyldcard.io/blog/implementing-a-tarot-deck-on-wyldcard)
-
 In order to get to running this code, we need to go over the following:
 
 - Setting Up a Development Environment
@@ -62,3 +58,7 @@ This repo also contains
 - [Examples and Demo code](examples)
 - [napi-rust-drivers](napi-rust-drivers) - The core Rust code which runs the Wyldcard e-paper displays and the javascript native api wrappers which form the SDK
 - [images](images) - Information about images, how to format them, programs for formatting and sending them to the Wyldcard plinth and some sample images to use
+
+For a blog-post style tutorial, see:
+
+- [Implementing a Tarot Deck on Wyldcard](https://www.wyldcard.io/blog/implementing-a-tarot-deck-on-wyldcard)
