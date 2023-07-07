@@ -42,6 +42,10 @@ async function main() {
 main()
 ```
 
+For a blog-post style tutorial, see:
+
+- [Implementing a Tarot Deck on Wyldcard](https://www.wyldcard.io/blog/implementing-a-tarot-deck-on-wyldcard)
+
 In order to get to running this code, we need to go over the following:
 
 - Setting Up a Development Environment
