@@ -6,6 +6,9 @@ let gm = require('gm').subClass({ imageMagick: true })
 
 let { Plinth, imageUtilities } = require('@wyldcard/drivers')
 
+// let cards be drawn upside down or 'reversed' in tarot parlance
+const ENABLE_REVERSE = false
+
 async function main() {
   let plinth = new Plinth('devkit')
 
@@ -43,15 +46,17 @@ async function main() {
     let image = await imageUtilities.loadPng(imagePath)
     console.log('turning faceup, image:', imagePath)
     // reverse!
-    if (_.random(1)) {
-      let reverse = new Promise((resolve, reject) => {
-        gm(imagePath).flip().write('/tmp/reversed.png', function (err) {
-          if (err) return reject(err)
-          return resolve()
+    if (ENABLE_REVERSE) {
+      if (_.random(1)) {
+        let reverse = new Promise((resolve, reject) => {
+          gm(imagePath).flip().write('/tmp/reversed.png', function (err) {
+            if (err) return reject(err)
+            return resolve()
+          })
         })
-      })
-      await reverse
-      image = await imageUtilities.loadPng('/tmp/reversed.png')
+        await reverse
+        image = await imageUtilities.loadPng('/tmp/reversed.png')
+      }
     }
 
     well.displayImage(image)
