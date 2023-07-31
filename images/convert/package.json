@@ -1,0 +1,12 @@
+{
+  "name": "convert",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "Jonah Stiennon <jonahss@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "glob": "^8.0.3",
+    "glob-promise": "^5.0.0",
+    "gm": "^1.25.0"
+  }
+}
