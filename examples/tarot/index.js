@@ -17,6 +17,13 @@ async function main() {
   let drawCard = async () => {
     let directory = path.resolve('/', 'home', 'pi', 'Pictures', 'wyldcard', 'tarot-reliberate')
     let imageNames = await fs.readdir(directory)
+
+    // soft reset
+    if (alreadyDrawn.length >= imageNames.length) {
+      alreadyDrawn = alreadyDrawn.slice(alreadyDrawn.length/2)
+      alreadyDrawn.push('back.png')
+    }
+
     let randomImageName = _.sample(imageNames)
     console.log('random image name', randomImageName, !alreadyDrawn.includes(randomImageName))
     while (alreadyDrawn.includes(randomImageName)) {
