@@ -11,7 +11,8 @@ use napi::{
 use rppal::gpio::Level;
 
 mod plinth;
-mod epaper_display;
+mod GDEW029T5D;
+mod GDEY029T94;
 
 use crate::plinth::{ Plinth, DevKitV1, Prototype };
 

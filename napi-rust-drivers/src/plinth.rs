@@ -18,7 +18,8 @@ use m95320::m95320::Flash;
 
 use port_expander::{ Pca9555, Pcf8574 };
 
-use crate::epaper_display::GDEW029T5DController;
+use crate::GDEW029T5D::GDEW029T5DController;
+use crate::GDEY029T94::GDEY029T94Controller;
 
 #[derive(Debug, Eq, PartialEq, Hash, Copy, Clone)]
 enum GpioExpander {
@@ -91,7 +92,7 @@ impl Plinth for DevKitV1 {
     let busy = pins.remove(&pin_assignments.busy_pin.1).expect("missing pin").into_input().expect("busy pin");
     let epd_chip_select = pins.remove(&pin_assignments.epd_chip_select_pin.1).expect("missing pin").into_output().expect("cs pin");
 
-    let mut display = GDEW029T5DController::new(
+    let mut display = GDEY029T94Controller::new(
                       reset,
                       busy,
                       data_or_command,
