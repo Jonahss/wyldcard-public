@@ -1,6 +1,6 @@
 {
   "name": "@wyldcard/drivers-linux-arm-gnueabihf",
-  "version": "0.0.14",
+  "version": "1.0.0",
   "os": [
     "linux"
   ],

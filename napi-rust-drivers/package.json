@@ -1,6 +1,6 @@
 {
   "name": "@wyldcard/drivers",
-  "version": "0.0.14",
+  "version": "1.0.0",
   "main": "index.js",
   "types": "index.d.ts",
   "napi": {
