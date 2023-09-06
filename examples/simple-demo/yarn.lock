@@ -2,27 +2,27 @@
 # yarn lockfile v1
 
 
-"@wyldcard/drivers-linux-arm-gnueabihf@0.0.11":
-  version "0.0.11"
-  resolved "https://registry.yarnpkg.com/@wyldcard/drivers-linux-arm-gnueabihf/-/drivers-linux-arm-gnueabihf-0.0.11.tgz#d7b3668563445686365f8d7320b39648a700c60a"
-  integrity sha512-K67CvVzR3mZBEAYNyes/62yBYsmWu6GI0uPz21MHkE1EUcFG/gTxms6fe2KwbwhKaVqmsvJRobRALd75LNJjZg==
+"@wyldcard/drivers-linux-arm-gnueabihf@1.0.0":
+  version "1.0.0"
+  resolved "https://registry.npmjs.org/@wyldcard/drivers-linux-arm-gnueabihf/-/drivers-linux-arm-gnueabihf-1.0.0.tgz"
+  integrity sha512-uf96ZHskXEWvz/qj8nXQPZLF2xvCyINvRNs4WV1EEcRpjM/TYicot7zYZloIcZlajruGV01HAMGCfCzsZy5WCg==
 
-"@wyldcard/drivers@0.0.11":
-  version "0.0.11"
-  resolved "https://registry.yarnpkg.com/@wyldcard/drivers/-/drivers-0.0.11.tgz#27f596a8c219fe2baaf0038107b0e206d3b53809"
-  integrity sha512-YnAcktMoDYwR+i4EdSokcA5PMkcQiUUucyOrs/YFr0xjkIq8q0gSucgw7Z6uqO0ISGXUIRAtCKYDy5DVB9gS8A==
+"@wyldcard/drivers@1.0.0":
+  version "1.0.0"
+  resolved "https://registry.npmjs.org/@wyldcard/drivers/-/drivers-1.0.0.tgz"
+  integrity sha512-SXsCq/2IhpBWQU/D8e/hlA+fwbNfxN2ffihukTepQNLkOfxI8J3IeDRXA9UZe1gRhMpBUOaB/ViXOlgoLeLVrQ==
   dependencies:
     lodash "^4.17.21"
     pngparse "^2.0.1"
   optionalDependencies:
-    "@wyldcard/drivers-linux-arm-gnueabihf" "0.0.11"
+    "@wyldcard/drivers-linux-arm-gnueabihf" "1.0.0"
 
 lodash@^4.17.21:
   version "4.17.21"
-  resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.21.tgz#679591c564c3bffaae8454cf0b3df370c3d6911c"
+  resolved "https://registry.npmjs.org/lodash/-/lodash-4.17.21.tgz"
   integrity sha512-v2kDEe57lecTulaDIuNTPy3Ry4gLGJ6Z1O3vE1krgXZNrsQ+LFTGHVxVjcXPs17LhbZVGedAJv8XZ1tvj5FvSg==
 
 pngparse@^2.0.1:
   version "2.0.1"
-  resolved "https://registry.yarnpkg.com/pngparse/-/pngparse-2.0.1.tgz#86852de4de349f4efb1e852e7525655e5ac5dfb8"
+  resolved "https://registry.npmjs.org/pngparse/-/pngparse-2.0.1.tgz"
   integrity sha512-RyB1P0BBwt3CNIZ5wT53lR1dT3CUtopnMOuP8xZdHjPhI/uXNNRnkx1yQb/3MMMyyMeo6p19fiIRHcLopWIkxA==
