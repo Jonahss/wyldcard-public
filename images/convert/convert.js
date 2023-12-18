@@ -4,7 +4,7 @@ const gm = require('gm').subClass({ imageMagick: '7+' });
 let glob = require('glob-promise')
 
 async function main() {
-  let imageFileNames = await glob('/Users/jonahss/Workspace/wyldcard/art/tarot/wyldcardBack.png')
+  let imageFileNames = await glob('/Users/jonahss/Workspace/wyldcard/art/DALLE3/*')
 
   let images = imageFileNames.map((filePath) => {
     return {
@@ -26,7 +26,7 @@ async function main() {
     .bitdepth(2)
     //.out('-alpha off')
     .stream(function (err, stdout, stderr) {
-      var writeStream = fs.createWriteStream(`/Users/jonahss/Workspace/wyldcard/art/tarot/wyldcardBack-converted.png`);
+      var writeStream = fs.createWriteStream(`/Users/jonahss/Workspace/wyldcard/art/output/${image.name}`);
       stdout.pipe(writeStream)
     })
   }
