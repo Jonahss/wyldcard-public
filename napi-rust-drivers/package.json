@@ -39,9 +39,5 @@
   "dependencies": {
     "lodash": "^4.17.21",
     "pngparse": "^2.0.1"
-  },
-  "optionalDependencies": {
-    "@wyldcard/drivers-linux-arm-gnueabihf": "1.1.1",
-    "@wyldcard/drivers-linux-arm64-gnu": "1.1.1"
   }
 }
