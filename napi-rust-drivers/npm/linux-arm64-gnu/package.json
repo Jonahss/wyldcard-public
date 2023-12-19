@@ -1,11 +1,11 @@
 {
   "name": "@wyldcard/drivers-linux-arm64-gnu",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "os": [
     "linux"
   ],
   "cpu": [
-    "arm"
+    "arm64"
   ],
   "main": "wyldcard_drivers.linux-arm64-gnu.node",
   "files": [
