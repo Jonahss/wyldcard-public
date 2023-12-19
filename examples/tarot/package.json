@@ -20,7 +20,7 @@
   },
   "homepage": "https://github.com/jonahss/wyldcard-public#readme",
   "dependencies": {
-    "@wyldcard/drivers": "^1.0.1",
+    "@wyldcard/drivers": "^1.1.0",
     "lodash": "^4.17.21",
     "gm": "^1.25.0"
   }
