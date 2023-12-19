@@ -204,7 +204,7 @@ impl Plinth for DevKitV1 {
 
     let switch = self.switches.get_mut(&(well, switch)).unwrap();
 
-    switch.set_async_interrupt(Trigger::RisingEdge, callback).expect("set switch");
+    switch.set_async_interrupt(Trigger::FallingEdge, callback).expect("set switch");
 
     Ok(())
   }
@@ -259,9 +259,9 @@ impl DevKitV1 {
     const GPIO_SWITCH_B0: u8 = 5;
     const GPIO_SWITCH_C0: u8 = 6;
   
-    const GPIO_SWITCH_A1: u8 = 21; // swapped for first version of plinth board
+    const GPIO_SWITCH_A1: u8 = 12;
     const GPIO_SWITCH_B1: u8 = 13;
-    const GPIO_SWITCH_C1: u8 = 12; // swapped for first version of plinth board
+    const GPIO_SWITCH_C1: u8 = 21;
   
     const GPIO_SWITCH_A2: u8 = 22;
     const GPIO_SWITCH_B2: u8 = 16;
@@ -457,7 +457,7 @@ impl Plinth for Prototype {
 
     let switch = self.switches.get_mut(&(well, switch)).unwrap();
 
-    switch.set_async_interrupt(Trigger::RisingEdge, callback).expect("set switch");
+    switch.set_async_interrupt(Trigger::FallingEdge, callback).expect("set switch");
 
     Ok(())
   }
@@ -513,9 +513,9 @@ impl Prototype {
     const GPIO_SWITCH_B0: u8 = 5;
     const GPIO_SWITCH_C0: u8 = 6;
   
-    const GPIO_SWITCH_A1: u8 = 21; // swapped for first version of plinth board
+    const GPIO_SWITCH_A1: u8 = 12;
     const GPIO_SWITCH_B1: u8 = 13;
-    const GPIO_SWITCH_C1: u8 = 12; // swapped for first version of plinth board
+    const GPIO_SWITCH_C1: u8 = 21;
   
     const GPIO_SWITCH_A2: u8 = 22;
     const GPIO_SWITCH_B2: u8 = 16;
