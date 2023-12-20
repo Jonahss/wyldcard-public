@@ -5,6 +5,8 @@ use std::time::{Duration, Instant};
 use embedded_hal::digital::v2::{ InputPin, OutputPin };
 use embedded_hal::blocking::spi::Transfer;
 
+const IDLE_TIMEOUT: Duration = Duration::new(6, 0);
+
 // resolution: 128 x 296
 pub struct GDEY029T94Controller<SPI, RESET, BUSY, DC, CS> {
     reset: RESET,
@@ -43,9 +45,10 @@ impl<SPI, RESET, BUSY, DC, CS, E> GDEY029T94Controller<SPI, RESET, BUSY, DC, CS>
 
     fn wait_for_idle(&mut self) -> Duration {
         println!("waiting for idle signal");
+        const IDLE_CHECK_FREQUENCY: Duration = Duration::from_millis(10);
         let start = Instant::now();
-        while self.busy.is_high().expect("read busy pin") {
-            thread::sleep(Duration::from_millis(10));
+        while self.busy.is_high().expect("read busy pin") && start.elapsed() < IDLE_TIMEOUT {
+            thread::sleep(IDLE_CHECK_FREQUENCY);
         }
         let wait_duration = start.elapsed();
         println!("epd was busy for {:?}", wait_duration);
