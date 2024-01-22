@@ -2,11 +2,16 @@ let fs = require('fs/promises')
 let path = require('path')
 let { createCanvas } = require('canvas');
 
-let { Plinth } = require('@wyldcard/drivers')
+let { Plinth, CardNotPresentError } = require('@wyldcard/drivers')
 
 // return the button press callback, associated with a well and button
 function buttonPress(well) {
   return async (chordedButtonPressEvent) => {
+    // do nothing if no card present
+    if (!well.isOccupied()) {
+      return
+    }
+
     memoryTemplate = {
       buttonPresses: [[],[],[],[],[]],
       count: 0,
@@ -104,8 +109,10 @@ function eraseAll(plinth) {
   let pixelsFormattedForWyldcard = formatPixelBuffer(pixels)
 
   plinth.wells.forEach((well) => {
-    well.storeData({})
-    well.displayImage(pixelsFormattedForWyldcard)
+    if (well.isOccupied()) {
+      well.storeData({})
+      well.displayImage(pixelsFormattedForWyldcard)
+    }
   })
 }
 

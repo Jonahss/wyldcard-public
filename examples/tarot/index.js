@@ -37,6 +37,8 @@ async function main() {
   }
 
   let turnFacedown = async (well) => {
+    if (!well.isOccupied()) { return }
+    
     well.storeData({ tarotCard: 'facedown' })
 
     let cardBackPath = path.resolve('/', 'home', 'pi', 'Pictures', 'wyldcard', 'tarot-reliberate', 'back.png')
@@ -46,6 +48,8 @@ async function main() {
   }
 
   let turnFaceup = async (well) => {
+    if (!well.isOccupied()) { return }
+
     well.storeData({ tarotCard: 'faceup' })
 
     let imagePath = await drawCard()
@@ -79,6 +83,8 @@ async function main() {
 
   // returns a button-press callback
   let flipCard = (well) => {
+    if (!well.isOccupied()) { return }
+
     let memory;
   
     try {

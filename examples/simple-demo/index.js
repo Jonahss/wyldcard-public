@@ -29,3 +29,10 @@ async function main() {
 }
 
 main()
+
+
+
+// catch all exceptions for this demo
+process.on('uncaughtException', (err) => {
+  console.error(err);
+})
