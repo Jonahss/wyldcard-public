@@ -14,7 +14,7 @@ use rppal::i2c::I2c;
 use rppal::uart::{ Uart, Parity };
 
 use m95320::prelude::*;
-use m95320::m95320::Flash;
+use m95320::m95320::{Flash, Status};
 
 use port_expander::{ Pca9555, Pcf8574 };
 
@@ -41,6 +41,7 @@ struct Well {
 
 pub trait Plinth {
   fn display_image(&self, well: usize, image: Vec<u8>);
+  fn well_occupied(&self, well: usize) -> bool;
   fn read_memory(&self, well: usize, buffer: &mut [u8]) -> Result<(), String>;
   fn write_memory(&self, well: usize, buffer: &mut [u8]) -> Result<(), String>;
   fn set_switch_callback(&mut self, well: usize, switch: char, callback: impl FnMut(Level) + Send + 'static) -> Result<(), String>;
@@ -104,6 +105,56 @@ impl Plinth for DevKitV1 {
     }
     display.display_image(image);
     display.sleep();
+  }
+
+  fn well_occupied(&self, well: usize) -> bool {
+    let pin_assignments = self.wyldcard_wells[well];
+
+    let i2c = I2c::new().unwrap();
+    let spi = Spi::new(Bus::Spi0, SlaveSelect::Ss0, 10_000_000, Mode::Mode0).unwrap();
+
+    // we're assuming all pins for a card are using the same expander
+    let expander_address = self.gpio_expander_addresses[&pin_assignments.busy_pin.0];
+    let mut expander = Pca9555::new(i2c, expander_address.0, expander_address.1, expander_address.2);
+    let virtual_gpios = expander.split();
+
+    let mut pins = HashMap::from([
+      (0, virtual_gpios.io0_0),
+      (1, virtual_gpios.io0_1),
+      (2, virtual_gpios.io0_2),
+      (3, virtual_gpios.io0_3),
+      (4, virtual_gpios.io0_4),
+      (5, virtual_gpios.io0_5),
+      (6, virtual_gpios.io0_6),
+      (7, virtual_gpios.io0_7),
+      (8, virtual_gpios.io1_0),
+      (9, virtual_gpios.io1_1),
+      (10, virtual_gpios.io1_2),
+      (11, virtual_gpios.io1_3),
+      (12, virtual_gpios.io1_4),
+      (13, virtual_gpios.io1_5),
+      (14, virtual_gpios.io1_6),
+      (15, virtual_gpios.io1_7),
+    ]);
+
+    let memory_chip_select = pins.remove(&pin_assignments.memory_chip_select_pin.1).expect("missing pin").into_output().expect("mem chip select");
+
+    let mut flash = Flash::init(
+                    spi,
+                    memory_chip_select,
+                  ).expect("memory");
+
+    flash._write_enable();
+
+    let status = flash.read_status().expect("get status");
+
+    match status {
+      Status::WRITE_ENABLE_LATCH => {
+        flash._write_disable();
+        true
+      },
+      _ => false
+    }
   }
 
   fn read_memory(&self, well: usize, buffer: &mut [u8]) -> Result<(), String> {
@@ -373,6 +424,48 @@ impl Plinth for Prototype {
     }
     display.display_image(image);
     display.sleep();
+  }
+
+  fn well_occupied(&self, well: usize) -> bool {
+    let pin_assignments = self.wyldcard_wells[well];
+
+    let i2c = I2c::new().unwrap();
+    let spi = Spi::new(Bus::Spi0, SlaveSelect::Ss0, 10_000_000, Mode::Mode0).unwrap();
+
+    // we're assuming all pins for a card are using the same expander
+    let expander_address = self.gpio_expander_addresses[&pin_assignments.busy_pin.0];
+    let mut expander = Pcf8574::new(i2c, expander_address.0, expander_address.1, expander_address.2);
+    let virtual_gpios = expander.split();
+
+    let mut pins = HashMap::from([
+      (0, virtual_gpios.p0),
+      (1, virtual_gpios.p1),
+      (2, virtual_gpios.p2),
+      (3, virtual_gpios.p3),
+      (4, virtual_gpios.p4),
+      (5, virtual_gpios.p5),
+      (6, virtual_gpios.p6),
+      (7, virtual_gpios.p7),
+    ]);
+
+    let memory_chip_select = pins.remove(&pin_assignments.memory_chip_select_pin.1).expect("mem chip select");
+
+    let mut flash = Flash::init(
+      spi,
+      memory_chip_select,
+    ).expect("memory");
+
+    flash._write_enable();
+
+    let status = flash.read_status().expect("get status");
+
+    match status {
+      Status::WRITE_ENABLE_LATCH => {
+        flash._write_disable();
+        true
+      },
+      _ => false
+    }
   }
 
   fn read_memory(&self, well: usize, buffer: &mut [u8]) -> Result<(), String> {

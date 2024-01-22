@@ -71,6 +71,12 @@ impl JsPrototype {
     self.plinth.write_memory(well.into(), &mut data_to_write).map_err(|e| Error::from_reason(e))?;
     Ok(())
   }
+
+  #[napi]
+  pub fn well_occupied(&self, well: u8) -> Result<bool> {
+    let ret = self.plinth.well_occupied(well.into());
+    Ok(ret)
+  }
 }
 
 #[napi]
@@ -126,5 +132,11 @@ impl JsDevkit {
     let mut data_to_write = Vec::from(data);
     self.plinth.write_memory(well.into(), &mut data_to_write).map_err(|e| Error::from_reason(e))?;
     Ok(())
+  }
+
+  #[napi]
+  pub fn well_occupied(&self, well: u8) -> Result<bool> {
+    let ret = self.plinth.well_occupied(well.into());
+    Ok(ret)
   }
 }

@@ -5,6 +5,13 @@ let _ = require('lodash')
 
 let { JsPrototype, JsDevkit } = require('./nativeBinding')
 
+function CardNotPresentError(well) {
+  this.name = 'CardNotPresentError';
+  this.message = `No card present for well ${well}`;
+  this.stack = (new Error()).stack;
+}
+CardNotPresentError.prototype = new Error; 
+
 class Plinth extends EventEmitter {
   constructor(model = 'devkit') {
     super()
@@ -53,6 +60,7 @@ class Well extends EventEmitter {
   // display an image on the e-paper display of the wyldcard present in this well
   // pass in a Buffer. You probably want to create this using the methods in `imageUtilities`
   displayImage = async function(imageBuffer) {
+    this._checkCardPresent()
     this.plinth.displayImage(this.id, imageBuffer)
   }
 
@@ -60,6 +68,7 @@ class Well extends EventEmitter {
   // it's easier to use the `storeData()` method, which serializes a javascript object for you
   // this method takes a raw Buffer of bytes 
   _writeMemory = function(buffer) {
+    this._checkCardPresent()
     this.plinth.writeMemory(this.id, buffer)
   }
 
@@ -76,6 +85,7 @@ class Well extends EventEmitter {
   }
 
   _readMemory = function() {
+    this._checkCardPresent()
     return this.plinth.readMemory(this.id, this.maxMemory)
   }
 
@@ -83,6 +93,11 @@ class Well extends EventEmitter {
     let text = this._readMemory().toString().trim()
     console.log('text', text)
     return JSON.parse(text)
+  }
+
+  // returns a boolean which is true if this well contains a card, false otherwise
+  isOccupied = function() {
+    return this.plinth.wellOccupied(this.id)
   }
 
   // register a callback to be called when Switch A (the top button) for this well is pressed
@@ -129,6 +144,13 @@ class Well extends EventEmitter {
       well.buttonPressBuffer = new Map()
     }, chordTimeout)
   }
+
+  // throws a CardNotPresentError if the well is currently empty
+  _checkCardPresent = function() {
+    if (!this.isOccupied()) {
+      throw new CardNotPresentError(this.id)
+    }
+  }
 }
 
 function validateCallback(cb) {
@@ -138,5 +160,6 @@ function validateCallback(cb) {
 }
 
 module.exports = {
-  Plinth
+  Plinth,
+  CardNotPresentError,
 }

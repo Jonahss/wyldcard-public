@@ -132,3 +132,8 @@ console.log(data) // { id: 'abc', name: 'chuckwudi' }
 You can use `well._writeMemory(buffer)` and `well._readMemory()` to read and write raw bytes to the memory, which will let you use the space more efficiently.
 
 See the [memory example](examples/memory/index.js) for a full working implementation.
+
+
+## Check whether a card is present
+
+If you want to check if a well is currently occupied by a card, you can call `well.isOccupied()`. This will return true if a Wyldcard is present on the well. You could use this function and a loop to run something when a is removed or placed. If you want to know _what_ card is present where, you should write card IDs to the memory chip and read them. 

@@ -9,6 +9,7 @@ export class JsPrototype {
   setSwitchCallback(well: number, switch: string, callback: (...args: any[]) => any): void
   readMemory(well: number, bytes: number): Buffer
   writeMemory(well: number, data: Buffer): void
+  wellOccupied(well: number): boolean
 }
 export class JsDevkit {
   constructor()
@@ -16,4 +17,5 @@ export class JsDevkit {
   setSwitchCallback(well: number, switch: string, callback: (...args: any[]) => any): void
   readMemory(well: number, bytes: number): Buffer
   writeMemory(well: number, data: Buffer): void
+  wellOccupied(well: number): boolean
 }
