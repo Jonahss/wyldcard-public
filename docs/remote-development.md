@@ -22,7 +22,7 @@ To check if it's working, the command `ping wyldcardDevkit.local` will return pa
 
 If it's working, ssh into the pi
 
-`ssh wyldcardDevkit.local`
+`ssh pi@wyldcardDevkit.local`
 
 Using password: `raspberry`
 
@@ -42,7 +42,7 @@ Open your file browser and open the SD card.
 
 We want to create a file named `wpa_supplicant`. I've included a template for you already which you can copy:
 
-`cp SETUP_WIFI_Template ./wpa_supplicant`
+`cp SETUP_WIFI_Template.txt ./wpa_supplicant.conf`
 
 Edit the `wpa_supplicant` file and fill in your specific values.
 
@@ -52,7 +52,7 @@ Now eject the SD card, reinsert it into the Raspberry Pi, push the Pi back onto 
 
 If packets are returned, ssh into the pi
 
-`ssh wyldcardDevkit.local`
+`ssh pi@wyldcardDevkit.local`
 
 Using password: `raspberry`
 
