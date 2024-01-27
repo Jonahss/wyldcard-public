@@ -44,10 +44,9 @@ main()
 
 In order to get to running this code, we need to go over the following:
 
-- Setting Up a Development Environment
+- [Setting Up a Development Environment](docs/remote-development.md)
 - [Using the Wyldcard JavaScript SDK](docs/using-the-wyldcard-javascript-sdk.md)
-- Formatting Images
-- Driver Documentation
+- [Formatting Images](docs/formatting-images.md)
 
 If you want to design your own Wyldcard-compatible hardware, check out:
 
